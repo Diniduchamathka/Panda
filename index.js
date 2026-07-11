@@ -88,7 +88,7 @@ async function connectToWA() {
       console.log('✅ Panda-MD connected to WhatsApp');
 
       const up = `panda-MD connected ✅\n\nPREFIX: ${prefix}`;
-      await danuwa.sendMessage(ownerNumber[0] + "@s.whatsapp.net", {
+      await panda.sendMessage(ownerNumber[0] + "@s.whatsapp.net", {
         image: { url: `https://github.com/DANUWA-MD/DANUWA-MD/blob/main/images/DANUWA-MD.png?raw=true` },
         caption: up
       });
@@ -106,7 +106,7 @@ async function connectToWA() {
   panda.ev.on('messages.upsert', async ({ messages }) => {
     for (const msg of messages) {
       if (msg.messageStubType === 68) {
-        await danuwa.sendMessageAck(msg.key);
+        await panda.sendMessageAck(msg.key);
       }
     }
 
@@ -132,7 +132,7 @@ async function connectToWA() {
     const pushname = mek.pushName || 'Sin Nombre';
     const isMe = botNumber.includes(senderNumber);
     const isOwner = ownerNumber.includes(senderNumber) || isMe;
-    const botNumber2 = await jidNormalizedUser(danuwa.user.id);
+    const botNumber2 = await jidNormalizedUser(panda.user.id);
 
     const groupMetadata = isGroup ? await panda.groupMetadata(from).catch(() => {}) : '';
     const groupName = isGroup ? groupMetadata.subject : '';
@@ -179,7 +179,7 @@ async function connectToWA() {
 ensureSessionFile();
 
 app.get("/", (req, res) => {
-  res.send("Hey, DANUWA-MD started✅");
+  res.send("Hey, Panda-MD started✅");
 });
 
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
